@@ -1,6 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { FlaskConical } from "lucide-react";
+import {
+  FlaskConical,
+  ArrowRight,
+  Fingerprint,
+  Database,
+  BellRing,
+  ShieldAlert,
+} from "lucide-react";
 
 import { useDemo } from "../../context/DemoContext";
 import { mockEngineer } from "../../data/mockData";
@@ -12,6 +19,9 @@ export default function PurchaseSimulator() {
   const [supplier, setSupplier] = useState("Demo Supplier A");
   const [reference, setReference] = useState("");
   const [fgasNumber, setFgasNumber] = useState(mockEngineer.fgasNumber);
+
+  const inputClass =
+    "w-full rounded-xl border border-decarbon-border bg-decarbon-bg px-4 py-3 text-sm text-decarbon-text outline-none transition-colors placeholder:text-decarbon-muted/50 focus:border-decarbon-accent focus:ring-1 focus:ring-decarbon-accent";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -51,95 +61,186 @@ export default function PurchaseSimulator() {
     setReference("");
   }
 
-  const inputClass =
-    "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-navy-900 outline-none focus:border-industrial-green focus:ring-2 focus:ring-green-100";
-
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="mb-6 flex items-center gap-3">
-        <div className="rounded-lg bg-green-50 p-3">
-          <FlaskConical size={22} className="text-industrial-green" />
+    <section className="overflow-hidden rounded-2xl border border-decarbon-border bg-decarbon-surface">
+      {/* Console header */}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-decarbon-border bg-decarbon-elevated/40 p-6">
+        <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-decarbon-border bg-decarbon-elevated">
+            <FlaskConical size={23} className="text-decarbon-accent" />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-decarbon-text">
+              Supplier Integration Simulator
+            </h3>
+
+            <p className="mt-1 text-xs text-decarbon-muted">
+              Simulate an incoming equipment purchase
+            </p>
+          </div>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold text-navy-900">
-            Supplier Purchase Simulator
-          </h3>
-
-          <p className="text-sm text-slate-500">
-            Demonstrate an incoming supplier transaction
-          </p>
-        </div>
+        <span className="inline-flex items-center gap-2 rounded-full border border-decarbon-accent/20 bg-decarbon-accent/10 px-3 py-1.5 text-[11px] font-medium text-decarbon-accent">
+          <span className="h-1.5 w-1.5 rounded-full bg-decarbon-accent" />
+          Simulation Active
+        </span>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Product Name
-          </label>
+      <div className="grid gap-8 p-6 lg:grid-cols-[1fr_260px] lg:p-8">
+        {/* Purchase form */}
+        <form onSubmit={handleSubmit} noValidate className="space-y-5">
+          <div>
+            <label
+              htmlFor="productName"
+              className="mb-2 block text-xs font-medium text-decarbon-muted"
+            >
+              Equipment / Product Name
+            </label>
 
-          <input
-            required
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            placeholder="e.g. Daikin Air Conditioning Unit"
-            className={inputClass}
-          />
-        </div>
+            <input
+              id="productName"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              placeholder="e.g. Daikin Air Conditioning Unit"
+              className={inputClass}
+            />
+          </div>
 
-        <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Supplier
-          </label>
+          <div>
+            <label
+              htmlFor="supplier"
+              className="mb-2 block text-xs font-medium text-decarbon-muted"
+            >
+              Supplier
+            </label>
 
-          <select
-            value={supplier}
-            onChange={(e) => setSupplier(e.target.value)}
-            className={inputClass}
+            <select
+              id="supplier"
+              value={supplier}
+              onChange={(e) => setSupplier(e.target.value)}
+              className={inputClass}
+            >
+              <option>Demo Supplier A</option>
+              <option>Demo Supplier B</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              htmlFor="reference"
+              className="mb-2 block text-xs font-medium text-decarbon-muted"
+            >
+              Purchase Reference
+            </label>
+
+            <input
+              id="reference"
+              value={reference}
+              onChange={(e) => setReference(e.target.value)}
+              placeholder="e.g. ORD-2045"
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="fgasNumber"
+              className="mb-2 flex items-center gap-2 text-xs font-medium text-decarbon-muted"
+            >
+              <Fingerprint size={14} />
+              Engineer F-Gas Identifier
+            </label>
+
+            <input
+              id="fgasNumber"
+              value={fgasNumber}
+              onChange={(e) => setFgasNumber(e.target.value)}
+              className={`${inputClass} font-mono tracking-wide`}
+            />
+
+            <p className="mt-2 text-[11px] text-decarbon-muted">
+              Test identifier:{" "}
+              <span className="font-mono text-decarbon-accent">
+                {mockEngineer.fgasNumber}
+              </span>
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-decarbon-accent px-5 py-3.5 text-sm font-semibold text-decarbon-bg transition-all hover:bg-decarbon-accent-hover active:scale-[0.99]"
           >
-            <option>Demo Supplier A</option>
-            <option>Demo Supplier B</option>
-          </select>
-        </div>
+            Simulate Supplier Purchase
+            <ArrowRight size={17} />
+          </button>
+        </form>
 
-        <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Purchase Reference
-          </label>
+        {/* Workflow explanation */}
+        <aside className="rounded-xl border border-decarbon-border bg-decarbon-bg p-5">
+          <div className="mb-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-decarbon-accent">
+              Integration Workflow
+            </p>
 
-          <input
-            required
-            value={reference}
-            onChange={(e) => setReference(e.target.value)}
-            placeholder="e.g. ORD-2045"
-            className={inputClass}
-          />
-        </div>
+            <p className="mt-2 text-xs leading-relaxed text-decarbon-muted">
+              Demonstration of how supplier transactions could be associated
+              with an engineer.
+            </p>
+          </div>
 
-        <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Engineer F-Gas Identifier
-          </label>
+          <div className="space-y-6">
+            {[
+              {
+                icon: Database,
+                title: "Transaction Received",
+                description: "Supplier purchase data enters Decarbon.",
+              },
+              {
+                icon: Fingerprint,
+                title: "Engineer Matched",
+                description: "F-Gas identifier matched to demo profile.",
+              },
+              {
+                icon: BellRing,
+                title: "Notification Created",
+                description: "Engineer receives an in-app alert.",
+              },
+            ].map((step, index) => (
+              <div key={step.title} className="relative flex gap-3">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-decarbon-elevated">
+                    <step.icon size={17} className="text-decarbon-accent" />
+                  </div>
 
-          <input
-            required
-            value={fgasNumber}
-            onChange={(e) => setFgasNumber(e.target.value)}
-            className={inputClass}
-          />
+                  {index < 2 && (
+                    <div className="absolute left-[17px] top-11 h-8 w-px bg-decarbon-border" />
+                  )}
+                </div>
 
-          <p className="mt-2 text-xs text-slate-500">
-            Demo identifier: {mockEngineer.fgasNumber}
-          </p>
-        </div>
+                <div>
+                  <p className="text-xs font-semibold text-decarbon-text">
+                    {step.title}
+                  </p>
 
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-industrial-green px-5 py-3 font-semibold text-white transition-colors hover:bg-green-700"
-        >
-          Simulate Supplier Purchase
-        </button>
-      </form>
+                  <p className="mt-1 text-[11px] leading-relaxed text-decarbon-muted">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7 flex gap-2 rounded-lg border border-decarbon-border bg-decarbon-elevated/50 p-3">
+            <ShieldAlert size={16} className="shrink-0 text-decarbon-accent" />
+
+            <p className="text-[11px] leading-relaxed text-decarbon-muted">
+              Prototype only. No live supplier APIs or official F-Gas
+              verification are connected.
+            </p>
+          </div>
+        </aside>
+      </div>
     </section>
   );
 }

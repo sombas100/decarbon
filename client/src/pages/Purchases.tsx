@@ -1,6 +1,7 @@
+import { Database, ArrowDownToLine } from "lucide-react";
+
 import PurchaseSimulator from "../components/purchases/PurchaseSimulator";
 import RecentPurchases from "../components/dashboard/RecentPurchases";
-
 import { useDemo } from "../context/DemoContext";
 
 export default function Purchases() {
@@ -8,14 +9,28 @@ export default function Purchases() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-navy-900">
-          Purchase Management
-        </h2>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-decarbon-accent">
+            Decarbon / Supplier Integrations
+          </p>
 
-        <p className="mt-2 text-sm text-slate-500">
-          View purchase records and simulate supplier integrations.
-        </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-decarbon-text">
+            Purchase Management
+          </h2>
+
+          <p className="mt-2 text-sm text-decarbon-muted">
+            Simulate supplier transactions and review linked equipment records.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 rounded-full border border-decarbon-border bg-decarbon-surface px-4 py-2">
+          <Database size={15} className="text-decarbon-accent" />
+
+          <span className="text-xs font-medium text-decarbon-muted">
+            {purchases.length} Demo Records
+          </span>
+        </div>
       </div>
 
       <PurchaseSimulator />
