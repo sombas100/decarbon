@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight, Package } from "lucide-react";
-import type { Purchase } from "../../data/mockData";
+import type { Purchase } from "../../../data/mockData";
 
 interface RecentPurchasesProps {
   purchases: Purchase[];
@@ -21,7 +21,7 @@ export default function RecentPurchases({ purchases }: RecentPurchasesProps) {
         </div>
 
         <Link
-          to="/purchases"
+          to="/engineer/purchases"
           className="flex items-center gap-2 text-xs font-semibold text-decarbon-accent transition-colors hover:text-decarbon-accent-hover"
         >
           View all
@@ -30,7 +30,7 @@ export default function RecentPurchases({ purchases }: RecentPurchasesProps) {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[650px] text-left">
+        <table className="w-full min-w-162.5 text-left">
           <thead className="border-b border-decarbon-border bg-decarbon-elevated/50">
             <tr className="text-[10px] font-semibold uppercase tracking-wider text-decarbon-muted">
               <th className="px-6 py-4">Equipment</th>

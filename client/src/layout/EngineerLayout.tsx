@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
-export default function AppLayout() {
+export default function EngineerLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

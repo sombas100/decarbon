@@ -9,8 +9,8 @@ import {
   ShieldAlert,
 } from "lucide-react";
 
-import { useDemo } from "../../context/DemoContext";
-import { mockEngineer } from "../../data/mockData";
+import { useDemo } from "../../../context/DemoContext";
+import { mockEngineer } from "../../../data/mockData";
 
 export default function PurchaseSimulator() {
   const { simulatePurchase } = useDemo();

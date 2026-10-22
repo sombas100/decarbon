@@ -1,8 +1,8 @@
 import { Database, ArrowDownToLine } from "lucide-react";
 
-import PurchaseSimulator from "../components/purchases/PurchaseSimulator";
-import RecentPurchases from "../components/dashboard/RecentPurchases";
-import { useDemo } from "../context/DemoContext";
+import PurchaseSimulator from "../../components/engineer/purchases/PurchaseSimulator";
+import RecentPurchases from "../../components/engineer/dashboard/RecentPurchases";
+import { useDemo } from "../../context/DemoContext";
 
 export default function Purchases() {
   const { purchases } = useDemo();

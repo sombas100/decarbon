@@ -1,5 +1,5 @@
 import { HardHat, Fingerprint, Building2, Shield } from "lucide-react";
-import type { Engineer } from "../../data/mockData";
+import type { Engineer } from "../../../data/mockData";
 
 interface EngineerProfileProps {
   engineer: Engineer;

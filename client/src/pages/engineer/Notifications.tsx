@@ -1,6 +1,6 @@
 import { Bell, Check, BellRing, Inbox } from "lucide-react";
 
-import { useDemo } from "../context/DemoContext";
+import { useDemo } from "../../context/DemoContext";
 
 export default function Notifications() {
   const { notifications, markNotificationRead } = useDemo();

@@ -13,11 +13,26 @@ import {
 } from "lucide-react";
 
 const navigation = [
-  { name: "Overview", path: "/", icon: LayoutDashboard },
-  { name: "Purchases", path: "/purchases", icon: Package },
-  { name: "Notifications", path: "/notifications", icon: Bell },
-  { name: "Resources", path: "/resources", icon: Leaf },
-  { name: "Community", path: "/community", icon: Users },
+  {
+    name: "Overview",
+    path: "/engineer",
+    icon: LayoutDashboard,
+  },
+  {
+    name: "Purchases",
+    path: "/engineer/purchases",
+    icon: Package,
+  },
+  {
+    name: "Notifications",
+    path: "/engineer/notifications",
+    icon: Bell,
+  },
+  {
+    name: "Resources",
+    path: "/engineer/resources",
+    icon: Leaf,
+  },
 ];
 
 interface SidebarProps {
@@ -102,7 +117,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <NavLink
                 key={path}
                 to={path}
-                end={path === "/"}
+                end={path === "/engineer"}
                 onClick={onClose}
                 title={!isExpanded ? name : undefined}
                 className={({ isActive }) =>

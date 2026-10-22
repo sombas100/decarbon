@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { Bell, Check, ArrowUpRight, Inbox } from "lucide-react";
 
-import { useDemo } from "../../context/DemoContext";
+import { useDemo } from "../context/DemoContext";
 
 export default function NotificationDropdown() {
   const { notifications, markNotificationRead } = useDemo();
@@ -154,7 +154,7 @@ export default function NotificationDropdown() {
           </div>
 
           <Link
-            to="/notifications"
+            to="/engineer/notifications"
             onClick={() => setIsOpen(false)}
             className="flex items-center justify-center gap-2 border-t border-decarbon-border p-4 text-xs font-semibold text-decarbon-accent transition-colors hover:bg-decarbon-elevated"
           >

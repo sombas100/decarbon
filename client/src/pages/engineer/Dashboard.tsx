@@ -1,11 +1,11 @@
 import { Package, Bell, Building2, Activity } from "lucide-react";
 
-import StatCard from "../components/dashboard/StatCard";
-import EngineerProfile from "../components/dashboard/EngineerProfile";
-import RecentPurchases from "../components/dashboard/RecentPurchases";
+import StatCard from "../../components/engineer/dashboard/StatCard";
+import EngineerProfile from "../../components/engineer/dashboard/EngineerProfile";
+import RecentPurchases from "../../components/engineer/dashboard/RecentPurchases";
 
-import { useDemo } from "../context/DemoContext";
-import { mockEngineer } from "../data/mockData";
+import { useDemo } from "../../context/DemoContext";
+import { mockEngineer } from "../../data/mockData";
 
 export default function Dashboard() {
   const { purchases, notifications } = useDemo();
