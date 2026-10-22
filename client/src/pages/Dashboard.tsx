@@ -4,8 +4,8 @@ import StatCard from "../components/dashboard/StatCard";
 import EngineerProfile from "../components/dashboard/EngineerProfile";
 import RecentPurchases from "../components/dashboard/RecentPurchases";
 
-import { mockEngineer } from "../data/mockData";
 import { useDemo } from "../context/DemoContext";
+import { mockEngineer } from "../data/mockData";
 
 export default function Dashboard() {
   const { purchases, notifications } = useDemo();
@@ -20,47 +20,67 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       {/* Page heading */}
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-          Engineer Portal / Overview
-        </p>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-decarbon-accent">
+            Decarbon / Engineer Portal
+          </p>
 
-        <h2 className="mt-2 text-2xl font-bold text-navy-900">
-          Dashboard Overview
-        </h2>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-decarbon-text">
+            Overview
+          </h2>
 
-        <p className="mt-1 text-sm text-slate-500">
-          Welcome back, {mockEngineer.name.split(" ")[0]}.
-        </p>
+          <p className="mt-2 text-sm text-decarbon-muted">
+            Welcome back, {mockEngineer.name.split(" ")[0]}. Here's your
+            engineering activity overview.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 rounded-full border border-decarbon-border bg-decarbon-surface px-4 py-2">
+          <span className="h-2 w-2 rounded-full bg-decarbon-accent" />
+
+          <span className="text-xs font-medium text-decarbon-muted">
+            Demo Workspace
+          </span>
+        </div>
       </div>
 
-      {/* Engineer profile */}
+      {/* Engineer identity */}
       <EngineerProfile engineer={mockEngineer} />
 
-      {/* Dashboard statistics */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      {/* Metrics */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           title="Total Purchases"
           value={purchases.length}
           icon={Package}
+          description="Recorded supplier transactions"
+          highlighted
         />
 
         <StatCard
           title="New Notifications"
           value={unreadNotifications}
           icon={Bell}
+          description="Unread activity alerts"
         />
 
-        <StatCard title="Suppliers" value={suppliers} icon={Building2} />
+        <StatCard
+          title="Suppliers"
+          value={suppliers}
+          icon={Building2}
+          description="Associated demo suppliers"
+        />
 
         <StatCard
-          title="Recent Activity"
+          title="Activity Events"
           value={purchases.length + notifications.length}
           icon={Activity}
+          description="Total demonstration records"
         />
       </div>
 
-      {/* Purchase activity */}
+      {/* Equipment activity */}
       <RecentPurchases purchases={purchases.slice(0, 5)} />
     </div>
   );

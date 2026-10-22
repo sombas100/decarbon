@@ -9,7 +9,7 @@ export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-cloud">
+    <div className="min-h-screen bg-decarbon-bg">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="min-w-0 lg:pl-20">
@@ -19,7 +19,14 @@ export default function AppLayout() {
           <Outlet />
         </main>
       </div>
-      <Toaster position="top-right" richColors closeButton duration={4000} />
+
+      <Toaster
+        position="top-right"
+        theme="dark"
+        richColors
+        closeButton
+        duration={4000}
+      />
     </div>
   );
 }

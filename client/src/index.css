@@ -1,15 +1,68 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-900: #14263d;
-  --color-navy-800: #1e344f;
-  --color-industrial-green: #16a34a;
-  --color-cloud: #f1f5f9;
+  /* Backgrounds */
+  --color-decarbon-bg: #101b19;
+  --color-decarbon-sidebar: #0c1513;
+  --color-decarbon-surface: #1a2925;
+  --color-decarbon-elevated: #24372f;
+
+  /* Borders */
+  --color-decarbon-border: #345046;
+
+  /* Brand */
+  --color-decarbon-accent: #a3e635;
+  --color-decarbon-accent-hover: #bef264;
+
+  /* Typography */
+  --color-decarbon-text: #f0fdf4;
+  --color-decarbon-muted: #9db1a7;
+}
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--color-decarbon-text);
+  background: var(--color-decarbon-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-cloud);
-  font-family: Inter, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--color-decarbon-accent);
+  color: var(--color-decarbon-bg);
+}
+
+/* Subtle scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-decarbon-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-decarbon-border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #48695b;
 }

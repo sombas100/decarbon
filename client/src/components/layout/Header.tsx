@@ -1,4 +1,10 @@
-import { Bell, Menu, CircleUserRound } from "lucide-react";
+import {
+  Bell,
+  Menu,
+  ChevronDown,
+  CircleUserRound,
+  ShieldCheck,
+} from "lucide-react";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -6,37 +12,72 @@ interface HeaderProps {
 
 export default function Header({ onMenuClick }: HeaderProps) {
   return (
-    <header className="flex h-20 items-center justify-between border-b border-slate-200 bg-white px-5 lg:px-8">
+    <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-decarbon-border bg-decarbon-bg/95 px-5 backdrop-blur-xl lg:px-8">
+      {/* Left section */}
       <div className="flex items-center gap-4">
         <button
           type="button"
           onClick={onMenuClick}
           aria-label="Open navigation"
-          className="text-slate-700 lg:hidden"
+          className="text-decarbon-muted hover:text-decarbon-text lg:hidden"
         >
-          <Menu size={24} />
+          <Menu size={23} />
         </button>
 
         <div>
-          <h1 className="text-lg font-semibold text-navy-900">
-            Engineer Portal
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-decarbon-accent" />
+
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-decarbon-muted">
+              Engineer Workspace
+            </p>
+          </div>
+
+          <h1 className="mt-1 text-sm font-semibold text-decarbon-text">
+            Decarbon Management Platform
           </h1>
-          <p className="text-xs text-slate-500">Decarbon Management Platform</p>
         </div>
       </div>
 
-      <div className="flex items-center gap-5">
-        <span className="hidden rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700 sm:inline-flex">
-          Demo Mode
-        </span>
+      {/* Right section */}
+      <div className="flex items-center gap-4">
+        <div className="hidden items-center gap-2 rounded-full border border-decarbon-border bg-decarbon-surface px-3 py-1.5 sm:flex">
+          <ShieldCheck size={14} className="text-decarbon-accent" />
 
-        <Bell size={20} className="text-slate-600" />
-
-        <div className="flex items-center gap-2 border-l border-slate-200 pl-4">
-          <CircleUserRound size={28} className="text-slate-600" />
-          <span className="hidden text-sm font-medium text-slate-700 md:block">
-            Demo Engineer
+          <span className="text-[11px] font-medium text-decarbon-muted">
+            Demo Mode
           </span>
+        </div>
+
+        <button
+          type="button"
+          aria-label="Notifications"
+          className="relative rounded-xl p-2.5 text-decarbon-muted transition-colors hover:bg-decarbon-surface hover:text-decarbon-text"
+        >
+          <Bell size={20} strokeWidth={1.8} />
+
+          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-decarbon-accent ring-2 ring-decarbon-bg" />
+        </button>
+
+        <div className="hidden h-8 w-px bg-decarbon-border sm:block" />
+
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-decarbon-border bg-decarbon-elevated">
+            <CircleUserRound size={21} className="text-decarbon-accent" />
+          </div>
+
+          <div className="hidden md:block">
+            <p className="text-xs font-semibold text-decarbon-text">
+              Alex Morgan
+            </p>
+
+            <p className="text-[10px] text-decarbon-muted">HVAC Engineer</p>
+          </div>
+
+          <ChevronDown
+            size={15}
+            className="hidden text-decarbon-muted md:block"
+          />
         </div>
       </div>
     </header>

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Package } from "lucide-react";
+import { ArrowUpRight, Package } from "lucide-react";
 import type { Purchase } from "../../data/mockData";
 
 interface RecentPurchasesProps {
@@ -8,51 +8,90 @@ interface RecentPurchasesProps {
 
 export default function RecentPurchases({ purchases }: RecentPurchasesProps) {
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="mb-5 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-navy-900">
-          Recent Purchases
-        </h3>
+    <section className="overflow-hidden rounded-2xl border border-decarbon-border bg-decarbon-surface">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-decarbon-border p-6">
+        <div>
+          <h3 className="text-lg font-semibold text-decarbon-text">
+            Equipment Activity
+          </h3>
+
+          <p className="mt-1 text-xs text-decarbon-muted">
+            Recent supplier purchase records
+          </p>
+        </div>
 
         <Link
           to="/purchases"
-          className="text-sm font-medium text-industrial-green hover:underline"
+          className="flex items-center gap-2 text-xs font-semibold text-decarbon-accent transition-colors hover:text-decarbon-accent-hover"
         >
           View all
+          <ArrowUpRight size={15} />
         </Link>
       </div>
 
-      <div className="divide-y divide-slate-100">
-        {purchases.map((purchase) => (
-          <div
-            key={purchase.id}
-            className="flex flex-wrap items-center gap-4 py-4"
-          >
-            <div className="rounded-lg bg-slate-100 p-3">
-              <Package size={20} className="text-slate-600" />
-            </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[650px] text-left">
+          <thead className="border-b border-decarbon-border bg-decarbon-elevated/50">
+            <tr className="text-[10px] font-semibold uppercase tracking-wider text-decarbon-muted">
+              <th className="px-6 py-4">Equipment</th>
+              <th className="px-6 py-4">Supplier</th>
+              <th className="px-6 py-4">Reference</th>
+              <th className="px-6 py-4">Date</th>
+              <th className="px-6 py-4">Status</th>
+            </tr>
+          </thead>
 
-            <div className="min-w-0 flex-1">
-              <p className="font-medium text-navy-900">
-                {purchase.productName}
-              </p>
+          <tbody className="divide-y divide-decarbon-border">
+            {purchases.map((purchase) => (
+              <tr
+                key={purchase.id}
+                className="transition-colors hover:bg-decarbon-elevated/50"
+              >
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-decarbon-elevated">
+                      <Package size={17} className="text-decarbon-accent" />
+                    </div>
 
-              <p className="text-xs text-slate-500">
-                {purchase.supplier} · {purchase.reference}
-              </p>
-            </div>
+                    <span className="text-sm font-medium text-decarbon-text">
+                      {purchase.productName}
+                    </span>
+                  </div>
+                </td>
 
-            <span
-              className={`rounded-full px-3 py-1 text-xs font-medium ${
-                purchase.status === "recorded"
-                  ? "bg-green-50 text-green-700"
-                  : "bg-amber-50 text-amber-700"
-              }`}
-            >
-              {purchase.status === "recorded" ? "Recorded" : "Pending"}
-            </span>
+                <td className="px-6 py-4 text-sm text-decarbon-muted">
+                  {purchase.supplier}
+                </td>
+
+                <td className="px-6 py-4 font-mono text-xs text-decarbon-muted">
+                  {purchase.reference}
+                </td>
+
+                <td className="px-6 py-4 text-xs text-decarbon-muted">
+                  {new Date(purchase.purchaseDate).toLocaleDateString("en-GB")}
+                </td>
+
+                <td className="px-6 py-4">
+                  <span
+                    className={`inline-flex rounded-full border px-3 py-1 text-[11px] font-medium ${
+                      purchase.status === "recorded"
+                        ? "border-decarbon-accent/20 bg-decarbon-accent/10 text-decarbon-accent"
+                        : "border-amber-500/20 bg-amber-500/10 text-amber-400"
+                    }`}
+                  >
+                    {purchase.status === "recorded" ? "Recorded" : "Pending"}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {purchases.length === 0 && (
+          <div className="p-8 text-center text-sm text-decarbon-muted">
+            No purchase records available.
           </div>
-        ))}
+        )}
       </div>
     </section>
   );
