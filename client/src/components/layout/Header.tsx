@@ -1,10 +1,5 @@
-import {
-  Bell,
-  Menu,
-  ChevronDown,
-  CircleUserRound,
-  ShieldCheck,
-} from "lucide-react";
+import { Menu, ChevronDown, CircleUserRound, ShieldCheck } from "lucide-react";
+import NotificationDropdown from "./NotificationDropdown";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -49,15 +44,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           </span>
         </div>
 
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="relative rounded-xl p-2.5 text-decarbon-muted transition-colors hover:bg-decarbon-surface hover:text-decarbon-text"
-        >
-          <Bell size={20} strokeWidth={1.8} />
-
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-decarbon-accent ring-2 ring-decarbon-bg" />
-        </button>
+        <NotificationDropdown />
 
         <div className="hidden h-8 w-px bg-decarbon-border sm:block" />
 

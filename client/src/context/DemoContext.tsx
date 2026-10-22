@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
 import {
   mockEngineer,
@@ -24,12 +30,26 @@ interface DemoContextType {
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
+function loadStoredData<T>(key: string, fallback: T): T {
+  try {
+    const stored = localStorage.getItem(key);
+
+    if (!stored) return fallback;
+
+    return JSON.parse(stored) as T;
+  } catch {
+    return fallback;
+  }
+}
 
 export function DemoProvider({ children }: { children: ReactNode }) {
-  const [purchases, setPurchases] = useState<Purchase[]>(mockPurchases);
+  const [purchases, setPurchases] = useState<Purchase[]>(() =>
+    loadStoredData("decarbon-demo-purchases", mockPurchases),
+  );
 
-  const [notifications, setNotifications] =
-    useState<EngineerNotification[]>(mockNotifications);
+  const [notifications, setNotifications] = useState<EngineerNotification[]>(
+    () => loadStoredData("decarbon-demo-notifications", mockNotifications),
+  );
 
   function simulatePurchase(purchase: NewPurchase): boolean {
     // Match the supplier-provided F-Gas identifier
@@ -67,6 +87,28 @@ export function DemoProvider({ children }: { children: ReactNode }) {
 
     return true;
   }
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        "decarbon-demo-purchases",
+        JSON.stringify(purchases),
+      );
+    } catch (error) {
+      console.error("Failed to persist purchases:", error);
+    }
+  }, [purchases]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        "decarbon-demo-notifications",
+        JSON.stringify(notifications),
+      );
+    } catch (error) {
+      console.error("Failed to persist notifications:", error);
+    }
+  }, [notifications]);
 
   function markNotificationRead(id: string) {
     setNotifications((prev) =>
