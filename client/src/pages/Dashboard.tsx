@@ -4,18 +4,17 @@ import StatCard from "../components/dashboard/StatCard";
 import EngineerProfile from "../components/dashboard/EngineerProfile";
 import RecentPurchases from "../components/dashboard/RecentPurchases";
 
-import {
-  mockEngineer,
-  mockPurchases,
-  mockNotifications,
-} from "../data/mockData";
+import { mockEngineer } from "../data/mockData";
+import { useDemo } from "../context/DemoContext";
 
 export default function Dashboard() {
-  const unreadNotifications = mockNotifications.filter(
+  const { purchases, notifications } = useDemo();
+
+  const unreadNotifications = notifications.filter(
     (notification) => !notification.isRead,
   ).length;
 
-  const suppliers = new Set(mockPurchases.map((purchase) => purchase.supplier))
+  const suppliers = new Set(purchases.map((purchase) => purchase.supplier))
     .size;
 
   return (
@@ -42,35 +41,27 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           title="Total Purchases"
-          value={mockPurchases.length}
+          value={purchases.length}
           icon={Package}
-          description="Demo purchase records"
         />
 
         <StatCard
           title="New Notifications"
           value={unreadNotifications}
           icon={Bell}
-          description="Unread demo notifications"
         />
 
-        <StatCard
-          title="Suppliers"
-          value={suppliers}
-          icon={Building2}
-          description="Demo suppliers"
-        />
+        <StatCard title="Suppliers" value={suppliers} icon={Building2} />
 
         <StatCard
           title="Recent Activity"
-          value={mockPurchases.length + mockNotifications.length}
+          value={purchases.length + notifications.length}
           icon={Activity}
-          description="Demo events"
         />
       </div>
 
       {/* Purchase activity */}
-      <RecentPurchases purchases={mockPurchases} />
+      <RecentPurchases purchases={purchases.slice(0, 5)} />
     </div>
   );
 }
