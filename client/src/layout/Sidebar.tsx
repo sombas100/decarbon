@@ -5,7 +5,6 @@ import {
   Package,
   Bell,
   Leaf,
-  Users,
   Wind,
   X,
   Activity,

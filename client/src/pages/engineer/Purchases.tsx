@@ -1,4 +1,4 @@
-import { Database, ArrowDownToLine } from "lucide-react";
+import { Database } from "lucide-react";
 
 import PurchaseSimulator from "../../components/engineer/purchases/PurchaseSimulator";
 import RecentPurchases from "../../components/engineer/dashboard/RecentPurchases";
