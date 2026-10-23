@@ -3,6 +3,8 @@ import { Package, Bell, Building2, Activity } from "lucide-react";
 import StatCard from "../../components/engineer/dashboard/StatCard";
 import EngineerProfile from "../../components/engineer/dashboard/EngineerProfile";
 import RecentPurchases from "../../components/engineer/dashboard/RecentPurchases";
+import ResetDemoButton from "../../components/engineer/ResetDemoButton";
+import IntegrationStatus from "../../components/engineer/IntegrationStatus";
 
 import { useDemo } from "../../context/DemoContext";
 import { mockEngineer } from "../../data/mockData";
@@ -43,6 +45,8 @@ export default function Dashboard() {
             Demo Workspace
           </span>
         </div>
+
+        <ResetDemoButton />
       </div>
 
       {/* Engineer identity */}
@@ -79,6 +83,8 @@ export default function Dashboard() {
           description="Total demonstration records"
         />
       </div>
+
+      <IntegrationStatus />
 
       {/* Equipment activity */}
       <RecentPurchases purchases={purchases.slice(0, 5)} />
